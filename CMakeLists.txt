@@ -43,10 +43,10 @@ include_directories(
 )
 
 
-add_executable(states_fusion
-               src/state.cpp
+add_executable(ekf_fusion
+               src/ekf_node.cpp
                )
-target_link_libraries(states_fusion
+target_link_libraries(ekf_fusion
                       ${catkin_LIBRARIES}
                       )
                       
