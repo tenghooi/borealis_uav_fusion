@@ -44,7 +44,7 @@ include_directories(
 
 
 add_executable(ekf_fusion
-               src/ekf_node.cpp
+               src/filter_node.cpp
                )
 target_link_libraries(ekf_fusion
                       ${catkin_LIBRARIES}
