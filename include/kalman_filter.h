@@ -10,6 +10,15 @@
 
 #include <Eigen/Dense>
 
+class KalmanFilter
+{
+private:
 
+protected:
+
+public:
+
+
+};
 
 #endif // _BOREALIS_KALMAN_FILTER_H_
