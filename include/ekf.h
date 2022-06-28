@@ -6,6 +6,8 @@
 #include <string>
 #include <queue>
 
+#include "kalman_filter.h"
+
 class ExtendedKalmanFilter
 {
 
