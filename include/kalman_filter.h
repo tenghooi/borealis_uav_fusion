@@ -25,9 +25,18 @@ protected:
     Eigen::MatrixXd process_noise_cov_Q;
     Eigen::MatrixXd measurement_noise_cov_R;
 
-    
-public:
 
+public:
+    KalmanFilter();
+    ~KalmanFilter();
+    
+    void set_states();
+    void set_matrices();
+    void get_states();
+    void get_matrices();
+
+    void Predict();
+    void Update();
 
 };
 
