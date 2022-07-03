@@ -46,9 +46,12 @@ include_directories(
 add_executable(ekf_fusion
 
                src/filter_node.cpp
+               src/filter_server.cpp
                src/ekf.cpp
                src/kalman_filter.cpp
+               src/node_param.cpp
                )
+               
 target_link_libraries(ekf_fusion
                       ${catkin_LIBRARIES}
                       )
