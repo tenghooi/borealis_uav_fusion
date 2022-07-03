@@ -15,7 +15,7 @@ class KalmanFilter
 protected:
     Eigen::MatrixXd state_transition_F_;
     Eigen::MatrixXd control_transition_B_;
-    Eigen::MatrixXd observation_H_;
+    Eigen::MatrixXd observation_transition_H_;
 
     Eigen::VectorXd states_x_;
     Eigen::VectorXd control_u_;
@@ -25,13 +25,18 @@ protected:
     Eigen::MatrixXd process_noise_cov_Q_;
     Eigen::MatrixXd measurement_noise_cov_R_;
 
+    Eigen::MatrixXd identity_I_;
+    Eigen::MatrixXd kalman_gain_K_;
 
 public:
     KalmanFilter();
     ~KalmanFilter();
     
     void set_states();
-    void set_matrices();
+    void set_control_input();
+    void set_measurement();
+    void set_cov_Q();
+    void set_cov_R();
 
     void get_states() const;
     void get_matrices();
