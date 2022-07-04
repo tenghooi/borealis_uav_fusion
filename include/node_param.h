@@ -14,8 +14,9 @@
 class NodeParams
 {
 public:
-    uint n_states_;
-    uint n_measurements_;
+    int n_states_;
+    int n_control_inputs_;
+    int n_measurement_states_;
   
     Eigen::MatrixXd process_transition_F_;
     Eigen::MatrixXd control_transition_B_;
@@ -24,6 +25,11 @@ public:
     Eigen::MatrixXd initial_states_cov_P_;
     Eigen::MatrixXd sensor_noise_cov_R_;
     Eigen::MatrixXd process_noise_cov_Q_;
+
+    NodeParams();
+    ~NodeParams();
+
+    void SetNodeParams(const ros::NodeHandle& node);
     
 };
 
