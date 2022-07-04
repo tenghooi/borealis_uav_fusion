@@ -6,9 +6,11 @@ NodeParams::~NodeParams() {}
 
 void NodeParams::SetNodeParams(const ros::NodeHandle& node)
 {
-    node.param<int>("n_states", n_states_, 6);
-    node.param<int>("n_control_inputs", n_control_inputs_, 6);
-    node.param<int>("n_measurement_states", n_measurement_states_, 3);
+    node.param<std::string>("borealis_fusion/frame_id", frame_id, "");
+
+    node.param<int>("borealis_fusion/n_states", n_states_, 6);
+    node.param<int>("borealis_fusion/n_control_inputs", n_control_inputs_, 6);
+    node.param<int>("borealis_fusion/n_measurement_states", n_measurement_states_, 3);
 
     node.param<std::vector<double>>("borealis_fusion/process_transition_F", F_vector_form_, std::vector<double>());
     node.param<std::vector<double>>("borealis_fusion/control_transition_B", B_vector_form_, std::vector<double>());

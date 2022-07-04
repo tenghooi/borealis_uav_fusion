@@ -14,6 +14,8 @@
 class NodeParams
 {
 public:
+    std::string frame_id;
+
     int n_states_;
     int n_control_inputs_;
     int n_measurement_states_;
