@@ -1,0 +1,14 @@
+borealis_fusion:
+  frame_id: ""
+  
+  n_states:  10              # Number of states to track
+  n_control_inputs: 6        # Number of control states; IMU inputs
+  n_measurement_states: 6    # Number of states from measurement sensor
+
+  process_transition_F: []
+  control_transition_B: [] 
+  observation_transition_H: []
+
+  initial_states_cov_P: []
+  process_noise_cov_Q: []
+  sensor_noise_cov_R: []
