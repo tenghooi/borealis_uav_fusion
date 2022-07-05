@@ -24,6 +24,8 @@ class FilterServer
 private:
     NodeParams parameters_;
 
+    KalmanFilter kalman_filter_;
+
     ros::Subscriber lidar_sub_;
     ros::Subscriber imu_sub_;
 
