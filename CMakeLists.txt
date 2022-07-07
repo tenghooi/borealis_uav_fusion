@@ -50,6 +50,7 @@ add_executable(ekf_fusion
                src/ekf.cpp
                src/kalman_filter.cpp
                src/node_param.cpp
+               src/update_handler.cpp
                )
                
 target_link_libraries(ekf_fusion
