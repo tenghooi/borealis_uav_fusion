@@ -8,9 +8,24 @@
 
 #include "state.h"
 
-
+#define N_STATE_BUFFER 65536 // sizze of uint16_t
 class UpdateHandler
 {
+private:
+    State state_buffer_[N_STATE_BUFFER];
+
+    uint16_t idx_current_state_;
+    uint16_t idx_state_cov_;
+    uint16_t idx_measurement_update_;
+
+    bool new_imu_msg_;
+    bool new_measurement_msg_;
+
+    
+
+
+
+
 
 };
 
