@@ -42,6 +42,7 @@ public:
     void get_matrices();
 
     void Initialize();
+    void PropagateState();
     void Predict();
     void Update();
 
