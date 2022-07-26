@@ -22,7 +22,11 @@ private:
     bool new_measurement_msg_;
 
     
+public:
+    UpdateHandler();
+    ~UpdateHandler();
 
+    
 
 
 
