@@ -12,9 +12,9 @@ void KalmanFilter::Initialize()
 
 }
 
-void PropagateState()
+void KalmanFilter::PropagateState()
 {
-    
+    states_x_ = state_transition_F_ * states_x_ + control_transition_B_ * control_u_;
 }
 
 void KalmanFilter::Predict()
