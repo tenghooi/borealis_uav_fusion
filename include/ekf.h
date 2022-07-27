@@ -8,8 +8,14 @@
 
 #include "kalman_filter.h"
 
-class ExtendedKalmanFilter
+class ExtendedKalmanFilter : public KalmanFilter
 {
+private:
+
+
+public:
+
+
 
 };
 
