@@ -6,9 +6,11 @@
 #include <string>
 #include <queue>
 
+#include <ros/ros.h>
+
 #include "state.h"
 
-#define N_STATE_BUFFER 65536 // sizze of uint16_t
+#define N_STATE_BUFFER 65536 // size of uint16_t
 class UpdateHandler
 {
 private:
@@ -26,7 +28,8 @@ public:
     UpdateHandler();
     ~UpdateHandler();
 
-    
+    void PropagateStates();
+    void UpdateStates();
 
 
 
