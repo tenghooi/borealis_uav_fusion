@@ -13,7 +13,6 @@
 class UpdateHandler
 {
 private:
-    State state_buffer_[N_STATE_BUFFER];
 
     uint16_t idx_current_state_;
     uint16_t idx_state_cov_;

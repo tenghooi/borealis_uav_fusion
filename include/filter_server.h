@@ -2,6 +2,7 @@
 #define _BOREALIS_FILTER_SERVER_H_
 
 #include <iostream>
+#include <array>
 #include <vector>
 #include <string>
 #include <queue>
@@ -24,11 +25,15 @@
 class FilterServer
 {
 private:
+    std::array<State, N_STATE_BUFFER> state_buffer_;
+
     NodeParams parameters_;
 
     KalmanFilter kalman_filter_;
 
-    ros::Subscriber lidar_sub_;
+    UpdateHandler update_handler_;
+
+    ros::Subscriber measurement_sub_;
     ros::Subscriber imu_sub_;
 
     ros::Publisher fused_pose_pub_;
@@ -37,8 +42,10 @@ public:
     FilterServer(ros::NodeHandle node);
     ~FilterServer();
 
+    void SetNodeParams();
+
     void PoseCallBack(const nav_msgs::OdometryConstPtr& measurement_msg);
-    void ControlCallBack(const sensor_msgs::ImuConstPtr& control_msg);
+    void IMUCallBack(const sensor_msgs::ImuConstPtr& control_msg);
 };
 
 #endif // _BOREALIS_FILTER_SERVER_H_
