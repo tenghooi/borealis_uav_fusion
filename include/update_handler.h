@@ -10,7 +10,6 @@
 
 #include "state.h"
 
-#define N_STATE_BUFFER 65536 // size of uint16_t
 class UpdateHandler
 {
 private:
