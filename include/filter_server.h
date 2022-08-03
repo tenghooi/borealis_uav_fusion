@@ -14,6 +14,7 @@
 #include <Eigen/Dense>
 
 #include "node_param.h"
+#include "state.h"
 #include "update_handler.h"
 #include "kalman_filter.h"
 #include "ekf.h"
