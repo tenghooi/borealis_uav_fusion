@@ -2,9 +2,11 @@
 #define _BOREALIS_FILTER_SERVER_H_
 
 #include <iostream>
+#include <array>
 #include <vector>
 #include <string>
 #include <queue>
+#include <type_traits>
 
 #include <ros/ros.h>
 #include <nav_msgs/Odometry.h>
@@ -19,15 +21,20 @@
 #include "kalman_filter.h"
 #include "ekf.h"
 
+#define N_STATE_BUFFER 65536 // size of uint16_t, DO NOT change
 
 class FilterServer
 {
 private:
+    std::array<State, N_STATE_BUFFER> state_buffer_;
+
     NodeParams parameters_;
 
     KalmanFilter kalman_filter_;
 
-    ros::Subscriber lidar_sub_;
+    UpdateHandler update_handler_;
+
+    ros::Subscriber measurement_sub_;
     ros::Subscriber imu_sub_;
 
     ros::Publisher fused_pose_pub_;
@@ -36,8 +43,14 @@ public:
     FilterServer(ros::NodeHandle node);
     ~FilterServer();
 
+    void SetNodeParams();
+
+    void CheckMsgType(); // check if it's ROS sensor_msgs::Imu::ConstPtr and set update_handler_'s members;
+    void StatePropagationProcess();
+    void StateUpdateProcess();
+
     void PoseCallBack(const nav_msgs::OdometryConstPtr& measurement_msg);
-    void ControlCallBack(const sensor_msgs::ImuConstPtr& control_msg);
+    void IMUCallBack(const sensor_msgs::ImuConstPtr& imu_msg);
 };
 
 #endif // _BOREALIS_FILTER_SERVER_H_
