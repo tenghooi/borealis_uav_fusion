@@ -44,8 +44,8 @@ public:
     ~FilterServer();
 
     void SetNodeParams();
-
-    void CheckMsgType(); // check if it's ROS sensor_msgs::Imu::ConstPtr and set update_handler_'s members;
+    void SetUpdateHandler();
+    
     void StatePropagationProcess();
     void StateUpdateProcess();
 
