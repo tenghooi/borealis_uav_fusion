@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 #include <queue>
+#include <type_traits>
 
 #include <ros/ros.h>
 #include <nav_msgs/Odometry.h>
@@ -44,8 +45,12 @@ public:
 
     void SetNodeParams();
 
+    void CheckMsgType(); // check if it's ROS sensor_msgs::Imu::ConstPtr and set update_handler_'s members;
+    void StatePropagationProcess();
+    void StateUpdateProcess();
+
     void PoseCallBack(const nav_msgs::OdometryConstPtr& measurement_msg);
-    void IMUCallBack(const sensor_msgs::ImuConstPtr& control_msg);
+    void IMUCallBack(const sensor_msgs::ImuConstPtr& imu_msg);
 };
 
 #endif // _BOREALIS_FILTER_SERVER_H_
