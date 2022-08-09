@@ -4,11 +4,6 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <queue>
-
-#include <ros/ros.h>
-
-#include "state.h"
 
 class UpdateHandler
 {
@@ -20,20 +15,24 @@ private:
 
     bool new_imu_msg_;
     bool new_measurement_msg_;
-
     
 public:
+
     UpdateHandler();
     ~UpdateHandler();
 
-    void PropagateStates();
-    void UpdateStates();
+    uint16_t getCurrentStateIdx() const;
+    uint16_t getLastMeaStateIdx() const;
 
+    bool IsImuMsg() const;
+    bool IsMeaMsg() const;
 
+    void setIsImuMsg(bool& is_imu);
+    void setIsMeaMsg(bool& is_measurement);
 
+    void setCurrentStateIdx(uint16_t& idx);
+    void setLastMeaStateIdx(uint16_t& idx);
 
 };
-
-
 
 #endif // _BOREALIS_FUSION_UPDATE_HANDLER_H_
