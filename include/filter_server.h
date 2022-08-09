@@ -26,7 +26,7 @@
 class FilterServer
 {
 private:
-    std::array<State, N_STATE_BUFFER> state_buffer_;
+    std::array<State, N_STATE_BUFFER> state_buffer_; // ring buffer for uav's states
 
     NodeParams parameters_;
 
