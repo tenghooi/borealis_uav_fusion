@@ -8,7 +8,13 @@
 #include <Eigen/Dense>
 class State
 {
+private:
 
+
+public:
+
+    double state_time_;
+    
 };
 
 #endif // _BOREALIS_FUSION_STATE_H_

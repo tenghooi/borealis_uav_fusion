@@ -46,7 +46,7 @@ public:
     void SetNodeParams();
     void SetUpdateHandler();
     
-    void StatePropagationProcess();
+    void StatePropagationProcess(const uint16_t& idx_state);
     void StateUpdateProcess();
 
     void PoseCallBack(const nav_msgs::OdometryConstPtr& measurement_msg);

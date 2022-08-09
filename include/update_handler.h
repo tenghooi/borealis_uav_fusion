@@ -30,8 +30,8 @@ public:
     void setIsImuMsg(bool& is_imu);
     void setIsMeaMsg(bool& is_measurement);
 
-    void setCurrentStateIdx(uint16_t& idx);
-    void setLastMeaStateIdx(uint16_t& idx);
+    void setCurrentStateIdx(const uint16_t& idx);
+    void setLastMeaStateIdx(const uint16_t& idx);
 
 };
 

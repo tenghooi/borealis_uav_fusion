@@ -40,12 +40,12 @@ void UpdateHandler::setIsMeaMsg(bool& is_measurement)
     new_measurement_msg_ = is_measurement;
 }
 
-void UpdateHandler::setCurrentStateIdx(uint16_t& idx)
+void UpdateHandler::setCurrentStateIdx(const uint16_t& idx)
 {
     idx_current_state_ = idx;
 }
 
-void UpdateHandler::setLastMeaStateIdx(uint16_t& idx)
+void UpdateHandler::setLastMeaStateIdx(const uint16_t& idx)
 {
     idx_measurement_update_ = idx;
 }
