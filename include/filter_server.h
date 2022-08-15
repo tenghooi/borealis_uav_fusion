@@ -27,6 +27,7 @@ class FilterServer
 {
 private:
     std::array<State, N_STATE_BUFFER> state_buffer_; // ring buffer for uav's states
+    std::array<State, N_STATE_BUFFER> imu_buffer_;
 
     NodeParams parameters_;
 
@@ -43,8 +44,9 @@ public:
     FilterServer(ros::NodeHandle node);
     ~FilterServer();
 
-    void SetNodeParams();
-    void SetUpdateHandler();
+    void setIMUBuffer(uint16_t idx, const sensor_msgs::ImuConstPtr& imu_msg);
+    void setNodeParams();
+    void setUpdateHandler();
     
     void StatePropagationProcess(const uint16_t& idx_state);
     void StateUpdateProcess();

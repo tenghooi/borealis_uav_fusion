@@ -10,12 +10,17 @@ FilterServer::~FilterServer()
 
 }
 
-void FilterServer::SetNodeParams()
+void FilterServer::setIMUBuffer(uint16_t idx, const sensor_msgs::ImuConstPtr& imu_msg)
 {
 
 }
 
-void FilterServer::SetUpdateHandler()
+void FilterServer::setNodeParams()
+{
+
+}
+
+void FilterServer::setUpdateHandler()
 {
 
 }
