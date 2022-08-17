@@ -32,7 +32,7 @@ public:
     State();
     ~State();
 
-    void toPoseMsg(); // geometry_msgs::PoseWithCovarianceStamped
+    void ConvertToPoseMsg(geometry_msgs::PoseWithCovarianceStamped& pose_msg); // geometry_msgs::PoseWithCovarianceStamped
     
 };
 

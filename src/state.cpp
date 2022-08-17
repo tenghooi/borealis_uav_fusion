@@ -10,7 +10,7 @@ State::~State()
 
 }
 
-void State::toPoseMsg()
+void State::ConvertToPoseMsg(geometry_msgs::PoseWithCovarianceStamped& pose_msg)
 {
     
 }
