@@ -48,7 +48,9 @@ void FilterServer::StateUpdateProcess()
 
 void FilterServer::PoseCallBack(const nav_msgs::OdometryConstPtr& measurement_msg)
 {
-    
+    uint16_t idx_measurement = update_handler_.getLastMeaStateIdx();
+
+    StateUpdateProcess();
 }
 
 void FilterServer::IMUCallBack(const sensor_msgs::ImuConstPtr& imu_msg)

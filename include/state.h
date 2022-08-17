@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 
+#include <std_msgs/Header.h>
 #include <geometry_msgs/PoseWithCovarianceStamped.h>
 
 #include <Eigen/Dense>
@@ -32,6 +33,7 @@ public:
     State();
     ~State();
 
+    void setStateTime(std_msgs::Header& header);
     void ConvertToPoseMsg(geometry_msgs::PoseWithCovarianceStamped& pose_msg); // geometry_msgs::PoseWithCovarianceStamped
     
 };
