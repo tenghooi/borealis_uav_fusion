@@ -2,7 +2,7 @@
 
 UpdateHandler::UpdateHandler():idx_current_state_{0},
                                idx_state_cov_{0},
-                               idx_measurement_update_{0},
+                               idx_measurement_state_{0},
                                new_imu_msg_{false},
                                new_measurement_msg_{false}
 { }
@@ -17,7 +17,7 @@ uint16_t UpdateHandler::getCurrentStateIdx() const
 
 uint16_t UpdateHandler::getLastMeaStateIdx() const
 {
-    return idx_measurement_update_;
+    return idx_measurement_state_;
 }
 
 bool UpdateHandler::IsImuMsg() const
@@ -47,5 +47,5 @@ void UpdateHandler::setCurrentStateIdx(const uint16_t& idx)
 
 void UpdateHandler::setLastMeaStateIdx(const uint16_t& idx)
 {
-    idx_measurement_update_ = idx;
+    idx_measurement_state_ = idx;
 }

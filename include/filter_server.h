@@ -48,7 +48,7 @@ public:
     void setUpdateHandler();
     
     void StatePropagationProcess(const uint16_t& idx_state);
-    void StateUpdateProcess();
+    void StateUpdateProcess(const uint16_t& idx_measurement, const nav_msgs::OdometryConstPtr& measurement_msg);
 
     void PoseCallBack(const nav_msgs::OdometryConstPtr& measurement_msg);
     void IMUCallBack(const sensor_msgs::ImuConstPtr& imu_msg);

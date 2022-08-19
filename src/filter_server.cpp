@@ -41,7 +41,8 @@ void FilterServer::StatePropagationProcess(const uint16_t& idx_state)
     
 }
 
-void FilterServer::StateUpdateProcess()
+void FilterServer::StateUpdateProcess(const uint16_t& idx_measurement,
+                                      const nav_msgs::OdometryConstPtr& measurement_msg)
 {
 
 }
@@ -50,7 +51,7 @@ void FilterServer::PoseCallBack(const nav_msgs::OdometryConstPtr& measurement_ms
 {
     uint16_t idx_measurement = update_handler_.getLastMeaStateIdx();
 
-    StateUpdateProcess();
+    StateUpdateProcess(idx_measurement, measurement_msg);
 }
 
 void FilterServer::IMUCallBack(const sensor_msgs::ImuConstPtr& imu_msg)
