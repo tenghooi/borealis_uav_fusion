@@ -11,7 +11,7 @@ private:
 
     uint16_t idx_current_state_;
     uint16_t idx_state_cov_;
-    uint16_t idx_measurement_update_;
+    uint16_t idx_measurement_state_;
 
     bool new_imu_msg_;
     bool new_measurement_msg_;
