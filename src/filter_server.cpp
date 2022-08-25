@@ -25,12 +25,20 @@ void FilterServer::setUpdateHandler()
 
 }
 
+void FilterServer::setFilter()
+{
+
+}
+
 void FilterServer::StatePropagationProcess(const uint16_t& idx_state,
                                            const sensor_msgs::ImuConstPtr& imu_msg)
 {   
     if (update_handler_.IsImuMsg())
     {   
 
+        setFilter();
+
+        kalman_filter_.PropagateState();
 
         update_handler_.setCurrentStateIdx(idx_state);
         ROS_INFO_STREAM("State propagated with new IMU msg");
