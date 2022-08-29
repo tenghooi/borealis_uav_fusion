@@ -25,9 +25,14 @@ void FilterServer::setUpdateHandler()
 
 }
 
-void FilterServer::setFilter()
+void FilterServer::setFilter(const uint16_t& idx_state, 
+                             const sensor_msgs::ImuConstPtr& imu_msg)
 {
+    uint16_t last_state = idx_state - 1;
 
+    kalman_filter_.set_states();
+    kalman_filter_.set_control_input();
+    
 }
 
 void FilterServer::StatePropagationProcess(const uint16_t& idx_state,
@@ -35,10 +40,13 @@ void FilterServer::StatePropagationProcess(const uint16_t& idx_state,
 {   
     if (update_handler_.IsImuMsg())
     {   
-
-        setFilter();
+        setFilter(idx_state, imu_msg);
 
         kalman_filter_.PropagateState();
+
+        geometry_msgs::PoseWithCovarianceStamped new_pose;
+        state_buffer_[idx_state].ConvertToPoseMsg(new_pose);
+        fused_pose_pub_.publish(new_pose);
 
         update_handler_.setCurrentStateIdx(idx_state);
         ROS_INFO_STREAM("State propagated with new IMU msg");
