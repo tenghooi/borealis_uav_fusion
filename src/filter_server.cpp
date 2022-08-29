@@ -25,11 +25,20 @@ void FilterServer::setUpdateHandler()
 
 }
 
-void FilterServer::StatePropagationProcess(const uint16_t& idx_state)
+void FilterServer::setFilter()
+{
+
+}
+
+void FilterServer::StatePropagationProcess(const uint16_t& idx_state,
+                                           const sensor_msgs::ImuConstPtr& imu_msg)
 {   
     if (update_handler_.IsImuMsg())
     {   
 
+        setFilter();
+
+        kalman_filter_.PropagateState();
 
         update_handler_.setCurrentStateIdx(idx_state);
         ROS_INFO_STREAM("State propagated with new IMU msg");
@@ -47,13 +56,6 @@ void FilterServer::StateUpdateProcess(const uint16_t& idx_measurement,
 
 }
 
-void FilterServer::PoseCallBack(const nav_msgs::OdometryConstPtr& measurement_msg)
-{
-    uint16_t idx_measurement = update_handler_.getLastMeaStateIdx();
-
-    StateUpdateProcess(idx_measurement, measurement_msg);
-}
-
 void FilterServer::IMUCallBack(const sensor_msgs::ImuConstPtr& imu_msg)
 {
     double msg_time = imu_msg->header.stamp.toSec();
@@ -66,7 +68,7 @@ void FilterServer::IMUCallBack(const sensor_msgs::ImuConstPtr& imu_msg)
         update_handler_.setIsImuMsg(is_imu_msg);
 
         idx_state += 1;
-        StatePropagationProcess(idx_state);
+        StatePropagationProcess(idx_state, imu_msg);
 
         is_imu_msg = false;
         update_handler_.setIsImuMsg(is_imu_msg);
@@ -77,3 +79,11 @@ void FilterServer::IMUCallBack(const sensor_msgs::ImuConstPtr& imu_msg)
     }
     
 }
+
+void FilterServer::PoseCallBack(const nav_msgs::OdometryConstPtr& measurement_msg)
+{
+    uint16_t idx_measurement = update_handler_.getLastMeaStateIdx();
+
+    StateUpdateProcess(idx_measurement, measurement_msg);
+}
+
