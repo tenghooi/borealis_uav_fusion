@@ -43,7 +43,6 @@ public:
     FilterServer(ros::NodeHandle node);
     ~FilterServer();
 
-    void setIMUBuffer(uint16_t idx, const sensor_msgs::ImuConstPtr& imu_msg);
     void setNodeParams();
     void setUpdateHandler();
     void setFilter();
