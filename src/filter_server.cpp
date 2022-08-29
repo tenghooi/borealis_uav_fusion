@@ -3,6 +3,11 @@
 FilterServer::FilterServer(ros::NodeHandle node) 
 {
 
+
+    imu_sub_ = node.subscribe("imu", 100, &FilterServer::IMUCallBack, this);
+    pose_sub_ = node.subscribe("pose", 10, &FilterServer::PoseCallBack, this);
+
+    fused_pose_pub_ = node.advertise<geometry_msgs::PoseWithCovarianceStamped>("uav_fusion_pose", 1);
 }
 
 FilterServer::~FilterServer()

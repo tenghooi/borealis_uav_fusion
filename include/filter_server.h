@@ -34,7 +34,7 @@ private:
 
     UpdateHandler update_handler_;
 
-    ros::Subscriber measurement_sub_;
+    ros::Subscriber pose_sub_;
     ros::Subscriber imu_sub_;
 
     ros::Publisher fused_pose_pub_;
