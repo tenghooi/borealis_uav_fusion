@@ -25,7 +25,7 @@ public:
 
     // IMU measurements as system inputs
     Eigen::Vector3d linear_accel_imu_;
-    Eigen::Vector4d angular_vel_imu_;
+    Eigen::Vector3d angular_vel_imu_;
 
     // Error states covariance
     Eigen::Matrix<double, N_STATES, N_STATES> state_cov_;
