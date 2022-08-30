@@ -25,13 +25,29 @@ void FilterServer::setUpdateHandler()
 
 }
 
-void FilterServer::setFilter(const uint16_t& idx_state, 
-                             const sensor_msgs::ImuConstPtr& imu_msg)
+void FilterServer::setStateBuffer(const uint16_t idx_state,
+                    const sensor_msgs::ImuConstPtr& imu_msg)
+{
+    state_buffer_[idx_state].linear_accel_imu_ << imu_msg -> linear_acceleration.x,
+                                                  imu_msg -> linear_acceleration.y,
+                                                  imu_msg -> linear_acceleration.z;
+
+    state_buffer_[idx_state].angular_vel_imu_ << imu_msg -> angular_velocity.x,
+                                                 imu_msg -> angular_velocity.y,
+                                                 imu_msg -> angular_velocity.z;
+}
+
+void FilterServer::setFilter(const uint16_t& idx_state)
+                             
 {
     uint16_t last_state = idx_state - 1;
 
-    kalman_filter_.set_states();
-    kalman_filter_.set_control_input();
+    kalman_filter_.set_states(state_buffer_[last_state].position_,
+                              state_buffer_[last_state].velocity_,
+                              state_buffer_[last_state].attitude_);
+
+    kalman_filter_.set_control_input(state_buffer_[idx_state].linear_accel_imu_,
+                                     state_buffer_[idx_state].angular_vel_imu_);
     
 }
 
@@ -40,7 +56,7 @@ void FilterServer::StatePropagationProcess(const uint16_t& idx_state,
 {   
     if (update_handler_.IsImuMsg())
     {   
-        setFilter(idx_state, imu_msg);
+        setFilter(idx_state);
 
         kalman_filter_.PropagateState();
 
