@@ -34,7 +34,7 @@ private:
 
     UpdateHandler update_handler_;
 
-    ros::Subscriber measurement_sub_;
+    ros::Subscriber pose_sub_;
     ros::Subscriber imu_sub_;
 
     ros::Publisher fused_pose_pub_;
@@ -43,10 +43,12 @@ public:
     FilterServer(ros::NodeHandle node);
     ~FilterServer();
 
-    void setIMUBuffer(uint16_t idx, const sensor_msgs::ImuConstPtr& imu_msg);
     void setNodeParams();
     void setUpdateHandler();
-    void setFilter();
+    void setStateBuffer(const uint16_t idx_state, const sensor_msgs::ImuConstPtr& imu_msg);
+    
+    void toFilter(const uint16_t& idx_state);
+    void fromFilter(const uint16_t& idx_state);
     
     void StatePropagationProcess(const uint16_t& idx_state, const sensor_msgs::ImuConstPtr& imu_msg);
     void StateUpdateProcess(const uint16_t& idx_measurement, const nav_msgs::OdometryConstPtr& measurement_msg);
