@@ -37,7 +37,7 @@ void FilterServer::setStateBuffer(const uint16_t idx_state,
                                                  imu_msg -> angular_velocity.z;
 }
 
-void FilterServer::setFilter(const uint16_t& idx_state)
+void FilterServer::toFilter(const uint16_t& idx_state)
                              
 {
     uint16_t last_state = idx_state - 1;
@@ -51,20 +51,27 @@ void FilterServer::setFilter(const uint16_t& idx_state)
     
 }
 
+void FilterServer::fromFilter(const uint16_t& idx_state)
+{
+    
+}
+
 void FilterServer::StatePropagationProcess(const uint16_t& idx_state,
                                            const sensor_msgs::ImuConstPtr& imu_msg)
 {   
     if (update_handler_.IsImuMsg())
     {   
-        setFilter(idx_state);
+        setStateBuffer(idx_state, imu_msg);
+        toFilter(idx_state);
 
         kalman_filter_.PropagateState();
+
+        fromFilter(idx_state);
 
         geometry_msgs::PoseWithCovarianceStamped new_pose;
         state_buffer_[idx_state].ConvertToPoseMsg(new_pose);
         fused_pose_pub_.publish(new_pose);
 
-        update_handler_.setCurrentStateIdx(idx_state);
         ROS_INFO_STREAM("State propagated with new IMU msg");
     }
     else
@@ -93,6 +100,8 @@ void FilterServer::IMUCallBack(const sensor_msgs::ImuConstPtr& imu_msg)
 
         idx_state += 1;
         StatePropagationProcess(idx_state, imu_msg);
+
+        update_handler_.setCurrentStateIdx(idx_state);
 
         is_imu_msg = false;
         update_handler_.setIsImuMsg(is_imu_msg);

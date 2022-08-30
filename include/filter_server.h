@@ -46,7 +46,9 @@ public:
     void setNodeParams();
     void setUpdateHandler();
     void setStateBuffer(const uint16_t idx_state, const sensor_msgs::ImuConstPtr& imu_msg);
-    void setFilter(const uint16_t& idx_state);
+    
+    void toFilter(const uint16_t& idx_state);
+    void fromFilter(const uint16_t& idx_state);
     
     void StatePropagationProcess(const uint16_t& idx_state, const sensor_msgs::ImuConstPtr& imu_msg);
     void StateUpdateProcess(const uint16_t& idx_measurement, const nav_msgs::OdometryConstPtr& measurement_msg);
