@@ -12,7 +12,7 @@ State::~State()
 
 void State::setStateTime(std_msgs::Header& header)
 {
-    
+    state_time_ = header.stamp.toSec();
 }
 
 void State::ConvertToPoseMsg(geometry_msgs::PoseWithCovarianceStamped& pose_msg)
