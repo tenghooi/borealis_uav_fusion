@@ -38,7 +38,7 @@ public:
     void set_cov_Q();
     void set_cov_R();
 
-    void get_states() const;
+    void get_states(Eigen::VectorXd& states) const;
     void get_matrices();
 
     void Initialize();

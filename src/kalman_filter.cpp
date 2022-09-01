@@ -25,6 +25,11 @@ void KalmanFilter::set_control_input(const Eigen::Vector3d& linear_accel,
     control_u_ << linear_accel, angular_vel;
 }
 
+void KalmanFilter::get_states(Eigen::VectorXd& states) const
+{
+    states = states_x_;
+}
+
 void KalmanFilter::PropagateState()
 {
     states_x_ = state_transition_F_ * states_x_ + control_transition_B_ * control_u_;

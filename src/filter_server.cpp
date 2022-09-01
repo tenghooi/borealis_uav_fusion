@@ -28,6 +28,8 @@ void FilterServer::setUpdateHandler()
 void FilterServer::setStateBuffer(const uint16_t idx_state,
                     const sensor_msgs::ImuConstPtr& imu_msg)
 {
+    state_buffer_[idx_state].setStateTime(imu_msg -> header);
+    
     state_buffer_[idx_state].linear_accel_imu_ << imu_msg -> linear_acceleration.x,
                                                   imu_msg -> linear_acceleration.y,
                                                   imu_msg -> linear_acceleration.z;
@@ -53,7 +55,12 @@ void FilterServer::toFilter(const uint16_t& idx_state)
 
 void FilterServer::fromFilter(const uint16_t& idx_state)
 {
-    
+    Eigen::VectorXd states(N_STATES);
+    kalman_filter_.get_states(states);
+
+    state_buffer_[idx_state].position_ = states.segment(0,2);
+    state_buffer_[idx_state].velocity_ = states.segment(3,5);
+    state_buffer_[idx_state].attitude_ = states.segment(6,9);
 }
 
 void FilterServer::StatePropagationProcess(const uint16_t& idx_state,
