@@ -60,7 +60,9 @@ void FilterServer::fromFilter(const uint16_t& idx_state)
 
     state_buffer_[idx_state].position_ = states.segment(0,2);
     state_buffer_[idx_state].velocity_ = states.segment(3,5);
-    state_buffer_[idx_state].attitude_ = states.segment(6,9);
+    state_buffer_[idx_state].attitude_.vec() = states.segment(6,8);
+    state_buffer_[idx_state].attitude_.w() = states[9];
+
 }
 
 void FilterServer::StatePropagationProcess(const uint16_t& idx_state,
