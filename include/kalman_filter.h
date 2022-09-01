@@ -32,8 +32,8 @@ public:
     KalmanFilter();
     ~KalmanFilter();
     
-    void set_states(Eigen::VectorXd position, Eigen::VectorXd velocity, Eigen::Quaterniond attitude);
-    void set_control_input(Eigen::VectorXd linear_accel, Eigen::VectorXd angular_vel);
+    void set_states(const Eigen::Vector3d& position, const Eigen::Vector3d& velocity, const Eigen::Quaterniond& attitude);
+    void set_control_input(const Eigen::Vector3d& linear_accel, const Eigen::Vector3d& angular_vel);
     void set_measurement();
     void set_cov_Q();
     void set_cov_R();

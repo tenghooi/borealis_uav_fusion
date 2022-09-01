@@ -12,6 +12,19 @@ void KalmanFilter::Initialize()
 
 }
 
+void KalmanFilter::set_states(const Eigen::Vector3d& position, 
+                              const Eigen::Vector3d& velocity,
+                              const Eigen::Quaterniond& attitude)
+{
+    states_x_ << position, velocity, attitude;
+}
+
+void KalmanFilter::set_control_input(const Eigen::Vector3d& linear_accel,
+                                     const Eigen::Vector3d& angular_vel)
+{
+    control_u_ << linear_accel, angular_vel;
+}
+
 void KalmanFilter::PropagateState()
 {
     states_x_ = state_transition_F_ * states_x_ + control_transition_B_ * control_u_;
