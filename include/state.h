@@ -33,7 +33,7 @@ public:
     State();
     ~State();
 
-    void setStateTime(std_msgs::Header& header);
+    void setStateTime(const std_msgs::Header& header);
     void ConvertToPoseMsg(geometry_msgs::PoseWithCovarianceStamped& pose_msg); // geometry_msgs::PoseWithCovarianceStamped
     
 };

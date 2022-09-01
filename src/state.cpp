@@ -10,7 +10,7 @@ State::~State()
 
 }
 
-void State::setStateTime(std_msgs::Header& header)
+void State::setStateTime(const std_msgs::Header& header)
 {
     state_time_ = header.stamp.toSec();
 }
