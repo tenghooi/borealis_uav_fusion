@@ -2,7 +2,16 @@
 
 State::State()
 {
+    state_time_ = 0.0;
 
+    position_.setZero();
+    velocity_.setZero();
+    attitude_.setIdentity();
+
+    linear_accel_imu_.setZero();
+    angular_vel_imu_.setZero();
+
+    state_cov_.setIdentity();
 }
 
 State::~State()
