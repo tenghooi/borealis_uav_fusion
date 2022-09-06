@@ -2,7 +2,7 @@
 
 FilterServer::FilterServer(ros::NodeHandle node) 
 {
-
+    state_buffer_.reserve(N_STATE_BUFFER);
 
     imu_sub_ = node.subscribe("imu", 100, &FilterServer::IMUCallBack, this);
     pose_sub_ = node.subscribe("pose", 10, &FilterServer::PoseCallBack, this);

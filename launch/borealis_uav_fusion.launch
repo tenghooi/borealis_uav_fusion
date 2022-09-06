@@ -2,11 +2,11 @@
 
     <node pkg="borealis_uav_fusion" type="ekf_fusion" name="ekf_fusion" output="screen">
 
-        <remap from="~imu" to="imu"/>
+        <remap from="~imu" to="/imu"/>
 
-        <remap from="~pose" to="pose"/>
+        <remap from="~pose" to="/pose"/>
 
-        <remap from="~uav_fusion_pose" to="uav_fusion_pose"/>
+        <remap from="~uav_fusion_pose" to="/uav_fusion_pose"/>
 
     </node>
 
