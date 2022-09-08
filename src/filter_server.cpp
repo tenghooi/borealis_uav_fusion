@@ -3,6 +3,11 @@
 FilterServer::FilterServer(ros::NodeHandle node) 
 {
     state_buffer_  = std::unique_ptr<std::array<State, N_STATE_BUFFER>>(new std::array<State, N_STATE_BUFFER>);
+    
+    for (auto& state : *state_buffer_)
+    {
+        state.reset();
+    }
 
     imu_sub_ = node.subscribe("imu", 100, &FilterServer::IMUCallBack, this);
     pose_sub_ = node.subscribe("pose", 10, &FilterServer::PoseCallBack, this);
