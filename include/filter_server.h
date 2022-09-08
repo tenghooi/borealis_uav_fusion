@@ -6,7 +6,7 @@
 #include <vector>
 #include <string>
 #include <queue>
-#include <type_traits>
+#include <memory>
 
 #include <ros/ros.h>
 #include <nav_msgs/Odometry.h>
@@ -26,11 +26,9 @@
 class FilterServer
 {
 private:
-    //std::array<State, N_STATE_BUFFER> state_buffer_; // ring buffer for uav's states
     
-    std::vector<State>state_buffer_;
-
-    
+    //std::vector<State>state_buffer_;
+    std::unique_ptr<std::array<State, N_STATE_BUFFER>> state_buffer_; // ring buffer for uav's states
 
     NodeParams parameters_;
 

@@ -19,6 +19,11 @@ State::~State()
 
 }
 
+void State::reset()
+{
+    
+}
+
 void State::setStateTime(const std_msgs::Header& header)
 {
     state_time_ = header.stamp.toSec();
