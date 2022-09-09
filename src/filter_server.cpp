@@ -2,12 +2,7 @@
 
 FilterServer::FilterServer(ros::NodeHandle node) 
 {
-    state_buffer_  = std::unique_ptr<std::array<State, N_STATE_BUFFER>>(new std::array<State, N_STATE_BUFFER>);
-    
-    for (auto& state : *state_buffer_)
-    {
-        state.reset();
-    }
+    Initialize();
 
     imu_sub_ = node.subscribe("imu", 100, &FilterServer::IMUCallBack, this);
     pose_sub_ = node.subscribe("pose", 10, &FilterServer::PoseCallBack, this);
@@ -18,6 +13,28 @@ FilterServer::FilterServer(ros::NodeHandle node)
 FilterServer::~FilterServer()
 {
 
+}
+
+void FilterServer::Initialize()
+{
+    //Initialize state buffer
+    state_buffer_  = std::unique_ptr<std::array<State, N_STATE_BUFFER>>(new std::array<State, N_STATE_BUFFER>);
+
+    for (auto& state : *state_buffer_)
+    {
+        state.reset();
+    }
+
+    ROS_INFO_STREAM("State buffer initialized.");
+
+    //Get node parameters
+    //TODO
+
+    //Initialize filter
+    kalman_filter_.reset();
+
+    //Initialize update handler
+    update_handler_.reset();
 }
 
 void FilterServer::setNodeParams()
