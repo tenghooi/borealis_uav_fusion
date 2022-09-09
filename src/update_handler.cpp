@@ -10,6 +10,11 @@ UpdateHandler::UpdateHandler():idx_current_state_{0},
 UpdateHandler::~UpdateHandler()
 { }
 
+void UpdateHandler::reset()
+{
+    
+}
+
 uint16_t UpdateHandler::getCurrentStateIdx() const
 {
     return idx_current_state_;
