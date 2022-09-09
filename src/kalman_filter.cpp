@@ -7,7 +7,7 @@ KalmanFilter::KalmanFilter()
 
 KalmanFilter::~KalmanFilter(){}
 
-void KalmanFilter::Initialize()
+void KalmanFilter::reset()
 {
 
 }
