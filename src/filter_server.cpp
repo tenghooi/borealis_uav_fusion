@@ -33,8 +33,6 @@ void FilterServer::Initialize()
     //Initialize filter
     kalman_filter_.reset();
 
-    //Initialize update handler
-    update_handler_.reset();
 }
 
 void FilterServer::setNodeParams()
