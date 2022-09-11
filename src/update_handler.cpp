@@ -12,7 +12,12 @@ UpdateHandler::~UpdateHandler()
 
 void UpdateHandler::reset()
 {
-    
+    idx_current_state_ = 0;
+    idx_state_cov_ = 0;
+    idx_measurement_state_ = 0;
+
+    new_imu_msg_ = false;
+    new_measurement_msg_ = false;
 }
 
 uint16_t UpdateHandler::getCurrentStateIdx() const
