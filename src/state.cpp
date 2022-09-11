@@ -2,6 +2,16 @@
 
 State::State()
 {
+    
+}
+
+State::~State()
+{
+
+}
+
+void State::reset()
+{
     state_time_ = 0.0;
 
     position_.setZero();
@@ -12,16 +22,6 @@ State::State()
     angular_vel_imu_.setZero();
 
     state_cov_.setIdentity();
-}
-
-State::~State()
-{
-
-}
-
-void State::reset()
-{
-    
 }
 
 void State::setStateTime(const std_msgs::Header& header)

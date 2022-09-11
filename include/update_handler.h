@@ -21,6 +21,8 @@ public:
     UpdateHandler();
     ~UpdateHandler();
 
+    void reset();
+
     uint16_t getCurrentStateIdx() const;
     uint16_t getLastMeaStateIdx() const;
 

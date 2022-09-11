@@ -7,9 +7,22 @@ KalmanFilter::KalmanFilter()
 
 KalmanFilter::~KalmanFilter(){}
 
-void KalmanFilter::Initialize()
+void KalmanFilter::reset()
 {
+    // state_transition_F_.Zero();
+    // control_transition_B_.Zero();
+    // observation_transition_H_.Zero();
 
+    // states_x_.Zero();
+    // control_u_.Zero();
+    // measurement_z_.Zero();
+
+    // states_cov_P_.Zero();
+    // process_noise_cov_Q_.Zero();
+    // measurement_noise_cov_R_.Zero();
+
+    // identity_I_.Identity();
+    // kalman_gain_K_.Zero();
 }
 
 void KalmanFilter::set_states(const Eigen::Vector3d& position, 

@@ -41,7 +41,7 @@ public:
     void get_states(Eigen::VectorXd& states) const;
     void get_matrices();
 
-    void Initialize();
+    void reset();
     void PropagateState();
     void Predict();
     void Update();

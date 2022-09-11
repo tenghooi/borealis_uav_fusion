@@ -45,6 +45,8 @@ public:
     FilterServer(ros::NodeHandle node);
     ~FilterServer();
 
+    void Initialize();
+
     void setNodeParams();
     void setUpdateHandler();
     void setStateBuffer(const uint16_t idx_state, const sensor_msgs::ImuConstPtr& imu_msg);
