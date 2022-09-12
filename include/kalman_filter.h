@@ -39,7 +39,7 @@ public:
     void set_cov_R();
 
     void get_states(Eigen::VectorXd& states) const;
-    void get_matrices();
+    Eigen::MatrixXd get_B() const;
 
     void reset();
     void PropagateState();
