@@ -42,6 +42,8 @@ public:
     Eigen::MatrixXd get_B() const;
 
     void reset();
+    void PropagateQuaternion();
+
     void PropagateState();
     void Predict();
     void Update();
