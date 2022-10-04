@@ -43,6 +43,7 @@ public:
     Eigen::MatrixXd get_B() const;
 
     void reset();
+    void PropagatePositionAndVelocity();
     void PropagateQuaternion();
 
     void PropagateState();
