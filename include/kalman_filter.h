@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include <queue>
+#include <cmath>
 
 #include <ros/ros.h>
 
