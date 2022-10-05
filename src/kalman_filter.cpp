@@ -48,14 +48,50 @@ Eigen::MatrixXd KalmanFilter::get_B() const
     return control_transition_B_;
 }
 
-void PropagateQuaternion()
+void KalmanFilter::PropagatePositionAndVelocity()
 {
 
 }
 
-void KalmanFilter::PropagateState()
+void KalmanFilter::PropagateQuaternion(double angular_vel_mag)
 {
-    states_x_ = state_transition_F_ * states_x_ + control_transition_B_ * control_u_;
+    double alpha;
+    double cos_alpha, sin_alpha;
+    double q_w, q_x, q_y, q_z;
+    double w_x, w_y, w_z; 
+
+    alpha = angular_vel_mag * 0.01 / 2.0;
+    cos_alpha = cos(alpha);
+    sin_alpha = sin(alpha);
+
+    q_x = states_x_[6];
+    q_y = states_x_[7];
+    q_z = states_x_[8];
+    q_w = states_x_[9];
+
+    w_x = control_u_[3];
+    w_y = control_u_[4];
+    w_z = control_u_[5];
+
+    states_x_[9] = q_w * cos_alpha - 
+                   (q_x * w_x + q_y * w_y + q_z * w_z) * sin_alpha / angular_vel_mag; // w - component of quaternion
+    
+    states_x_[6] = q_x * cos_alpha + 
+                   (q_w * w_x + q_y * w_z - q_z * w_y) * sin_alpha / angular_vel_mag; // x - component of quaternion
+    
+    states_x_[7] = q_y * cos_alpha + 
+                   (q_w * w_y - q_x * w_z + q_z * w_x) * sin_alpha / angular_vel_mag; // y - component of quaternion
+    
+    states_x_[8] = q_z * cos_alpha + 
+                   (q_w * w_z + q_x * w_y - q_y * w_x) * sin_alpha / angular_vel_mag; // z - component of quaternion
+}
+
+void KalmanFilter::PropagateState()
+{   
+    double angular_vel_mag;
+    angular_vel_mag = control_u_.segment(3,5).norm();
+
+    PropagateQuaternion(angular_vel_mag);
 }
 
 void KalmanFilter::Predict()

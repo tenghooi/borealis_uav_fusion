@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include <queue>
+#include <cmath>
 
 #include <ros/ros.h>
 
@@ -42,7 +43,8 @@ public:
     Eigen::MatrixXd get_B() const;
 
     void reset();
-    void PropagateQuaternion();
+    void PropagatePositionAndVelocity();
+    void PropagateQuaternion(double angular_vel_mag);
 
     void PropagateState();
     void Predict();
