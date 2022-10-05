@@ -53,7 +53,7 @@ void KalmanFilter::PropagatePositionAndVelocity()
 
 }
 
-void KalmanFilter::PropagateQuaternion(double angular_vel_mag)
+void KalmanFilter::PropagateQuaternion(const double& angular_vel_mag)
 {
     double alpha;
     double cos_alpha, sin_alpha;
@@ -91,6 +91,7 @@ void KalmanFilter::PropagateState()
     double angular_vel_mag;
     angular_vel_mag = control_u_.segment(3,5).norm();
 
+    PropagatePositionAndVelocity();
     PropagateQuaternion(angular_vel_mag);
 }
 

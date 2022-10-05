@@ -44,7 +44,7 @@ public:
 
     void reset();
     void PropagatePositionAndVelocity();
-    void PropagateQuaternion(double angular_vel_mag);
+    void PropagateQuaternion(const double& angular_vel_mag);
 
     void PropagateState();
     void Predict();
