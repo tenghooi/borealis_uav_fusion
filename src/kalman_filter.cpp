@@ -50,7 +50,31 @@ Eigen::MatrixXd KalmanFilter::get_B() const
 
 void KalmanFilter::PropagatePositionAndVelocity()
 {
+    double p_x, p_y, p_z;
+    double v_x, v_y, v_z;
+    double a_x, a_y, a_z;
 
+    p_x = states_x_[0];
+    p_y = states_x_[1];
+    p_z = states_x_[2];
+
+    v_x = states_x_[3];
+    v_y = states_x_[4];
+    v_z = states_x_[5];
+
+    a_x = control_u_[0];
+    a_y = control_u_[1];
+    a_z = control_u_[2];
+
+    // Propagate Position
+    states_x_[0] = p_x + v_x * 0.01 + 0.5 * a_x * 0.01 * 0.01;
+    states_x_[1] = p_y + v_y * 0.01 + 0.5 * a_y * 0.01 * 0.01;
+    states_x_[2] = p_z + v_z * 0.01 + 0.5 * a_z * 0.01 * 0.01;
+
+    // Propagate Velocity
+    states_x_[3] = v_x + a_x * 0.01;
+    states_x_[4] = v_y + a_y * 0.01;
+    states_x_[5] = v_z + a_z * 0.01;
 }
 
 void KalmanFilter::PropagateQuaternion(const double& angular_vel_mag)
