@@ -18,8 +18,8 @@ protected:
     Eigen::MatrixXd control_transition_B_;
     Eigen::MatrixXd observation_transition_H_;
 
-    Eigen::VectorXd states_x_;
-    Eigen::VectorXd control_u_;
+    Eigen::Matrix<double, 10, 1> states_x_;
+    Eigen::Matrix<double, 6, 1> control_u_;
     Eigen::VectorXd measurement_z_;
 
     Eigen::MatrixXd states_cov_P_;

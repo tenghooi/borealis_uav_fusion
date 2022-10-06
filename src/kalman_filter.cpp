@@ -2,8 +2,8 @@
 
 KalmanFilter::KalmanFilter()
 {
-    states_x_ = Eigen::VectorXd(10);
-    control_u_ = Eigen::VectorXd(6);
+    //states_x_ = Eigen::VectorXd(10);
+    //control_u_ = Eigen::VectorXd(6);
 }
 
 KalmanFilter::~KalmanFilter(){}
@@ -14,8 +14,8 @@ void KalmanFilter::reset()
     // control_transition_B_.Zero();
     // observation_transition_H_.Zero();
 
-    // states_x_.Zero();
-    // control_u_.Zero();
+    states_x_.Zero();
+    control_u_.Zero();
     // measurement_z_.Zero();
 
     // states_cov_P_.Zero();
