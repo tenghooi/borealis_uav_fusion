@@ -21,7 +21,7 @@
 #include "kalman_filter.h"
 #include "ekf.h"
 
-#define N_STATE_BUFFER 65535 // size of uint16_t, DO NOT change
+#define N_STATE_BUFFER 65536 // size of uint16_t, DO NOT change
 
 class FilterServer
 {
