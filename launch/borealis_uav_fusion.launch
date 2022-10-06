@@ -1,6 +1,6 @@
 <launch>
 
-    <node pkg="borealis_uav_fusion" type="ekf_fusion" name="ekf_fusion" output="screen">
+    <node pkg="borealis_uav_fusion" type="ekf_fusion" name="uav_ekf_fusion" output="screen">
 
         <remap from="~imu" to="/imu"/>
 
