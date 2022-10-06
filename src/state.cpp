@@ -33,7 +33,7 @@ void State::ConvertToPoseMsg(geometry_msgs::PoseWithCovarianceStamped& pose_msg)
 {
     ros::Time time(state_time_);
     pose_msg.header.stamp = time;
-    pose_msg.header.frame_id = "camera_init";
+    pose_msg.header.frame_id = "uav1/os_sensor";
 
     pose_msg.pose.pose.position.x = position_[0];
     pose_msg.pose.pose.position.y = position_[1];
