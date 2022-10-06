@@ -3,6 +3,7 @@
 KalmanFilter::KalmanFilter()
 {
     states_x_ = Eigen::VectorXd(10);
+    control_u_ = Eigen::VectorXd(6);
 }
 
 KalmanFilter::~KalmanFilter(){}
