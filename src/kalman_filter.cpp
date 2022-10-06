@@ -2,7 +2,7 @@
 
 KalmanFilter::KalmanFilter()
 {
-
+    states_x_ = Eigen::VectorXd(10);
 }
 
 KalmanFilter::~KalmanFilter(){}
