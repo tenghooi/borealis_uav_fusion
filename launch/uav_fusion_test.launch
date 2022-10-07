@@ -1,0 +1,13 @@
+<launch>
+
+    <node pkg="borealis_uav_fusion" type="ekf_fusion" name="uav_ekf_fusion" output="screen">
+
+        <remap from="~imu" to="/os_cloud_node/imu"/>
+
+        <remap from="~pose" to="/pose"/>
+
+        <remap from="~uav_fusion_pose" to="/uav_fusion_pose"/>
+
+    </node>
+
+</launch>
