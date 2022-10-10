@@ -29,8 +29,8 @@ void KalmanFilter::reset()
 void KalmanFilter::set_states(const Eigen::Vector3d& position, 
                               const Eigen::Vector3d& velocity,
                               const Eigen::Quaterniond& attitude)
-{
-    states_x_ << position, velocity, attitude;
+{   
+    states_x_ << position, velocity, attitude.vec(), attitude.w();
 }
 
 void KalmanFilter::set_control_input(const Eigen::Vector3d& linear_accel,
@@ -115,7 +115,7 @@ void KalmanFilter::PropagateState()
 {   
     double angular_vel_mag;
     angular_vel_mag = control_u_.segment(3,5).norm();
-
+    
     PropagatePositionAndVelocity();
     PropagateQuaternion(angular_vel_mag);
 }
